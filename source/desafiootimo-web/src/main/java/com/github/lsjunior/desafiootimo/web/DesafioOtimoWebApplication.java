@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DesafiootimoWebApplication {
+public class DesafioOtimoWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DesafiootimoWebApplication.class, args);
+		SpringApplication.run(DesafioOtimoWebApplication.class, args);
 	}
 
 }

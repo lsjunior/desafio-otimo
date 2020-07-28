@@ -1,0 +1,63 @@
+debug: false
+
+logging:
+  level:
+    root: warn
+    com.github.lsjunior.desafiootimo: info
+    org.hibernate: error
+    org.springframework: warn
+    org.springframework.security: warn
+    org.springframework.web: warn
+    
+server:
+  port: 18080
+  servlet:
+    application-display-name: desafiootimo-web
+    context-path: /desafiootimo-web
+
+spring:
+  application:
+    name: desafiootimo-web
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: otimo
+    url: jdbc:postgresql://db:5432/otimo
+    username: otimo
+    hikari:
+      auto-commit: false
+      connection-init-sql: SELECT 1
+      connection-test-query: SELECT 1
+      connection-timeout: 15000
+      idle-timeout: 15000
+      max-lifetime: 60000
+      maximum-pool-size: 8
+      minimum-idle: 2
+      validation-timeout: 15000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+    show-sql: false
+    
+---
+
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:postgresql://localhost:15432/otimo
+  devtools:
+    restart:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        generate_statistics: false
+        use_sql_comments: false
+    show-sql: true
+
