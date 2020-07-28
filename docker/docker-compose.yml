@@ -1,0 +1,15 @@
+version: '2'
+volumes:
+  postgres_data: {}
+services:
+  postgres:
+    image: postgres:12.3
+    environment:
+      POSTGRES_PASSWORD: otimo
+      POSTGRES_USER: otimo
+      POSTGRES_DB: otimo
+    volumes:
+      - ./volumes/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+      - postgres_data:/var/lib/postgresql/data:rw
+    ports:
+      - "15432:5432/tcp"
