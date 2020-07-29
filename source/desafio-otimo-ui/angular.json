@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "desafio-otimo-ui"
+    }
+  },
+  "defaultProject": "desafio-otimo-ui",
+  "cli": {
+    "analytics": "608ad37f-1f3c-4d6c-b0e1-750e03ef4c57"
+  }
 }

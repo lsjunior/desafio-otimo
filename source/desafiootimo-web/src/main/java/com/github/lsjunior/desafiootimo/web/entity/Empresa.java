@@ -48,6 +48,11 @@ public class Empresa implements Serializable {
   @Size(max = 40)
   private String razaoSocial;
 
+  @Column(name = "contato", length = 40, nullable = false)
+  @NotNull
+  @Size(max = 40)
+  private String contato;
+
   @Column(name = "email", length = 40, nullable = false)
   @NotNull
   @Email
@@ -58,6 +63,10 @@ public class Empresa implements Serializable {
   @NotNull
   @Size(max = 40)
   private String logradouro;
+
+  @Column(name = "complemento", length = 40, nullable = true)
+  @Size(max = 40)
+  private String complemento;
 
   @Column(name = "estado", length = 40, nullable = false)
   @NotNull
@@ -126,6 +135,14 @@ public class Empresa implements Serializable {
     this.razaoSocial = razaoSocial;
   }
 
+  public String getContato() {
+    return this.contato;
+  }
+
+  public void setContato(final String contato) {
+    this.contato = contato;
+  }
+
   public String getEmail() {
     return this.email;
   }
@@ -140,6 +157,14 @@ public class Empresa implements Serializable {
 
   public void setLogradouro(final String logradouro) {
     this.logradouro = logradouro;
+  }
+
+  public String getComplemento() {
+    return this.complemento;
+  }
+
+  public void setComplemento(final String complemento) {
+    this.complemento = complemento;
   }
 
   public String getEstado() {

@@ -16,8 +16,10 @@ CREATE TABLE public.empresa (
   cnpj varchar(20) NOT NULL,
   nome varchar(50) NOT NULL,
   razao_social varchar(40) NOT NULL,
+  contato varchar(40) NOT NULL,
   email varchar(40) NOT NULL,
   logradouro varchar(40) NOT NULL,
+  complemento varchar(40) NULL,
   estado varchar(40) NOT NULL,
   cidade varchar(40) NOT NULL,
   bairro varchar(40) NOT NULL,
@@ -27,3 +29,4 @@ CREATE TABLE public.empresa (
   CONSTRAINT empresa_pk PRIMARY KEY (id),
   CONSTRAINT empresa_matriz_fk FOREIGN KEY (id_matriz) REFERENCES public.empresa(id)
 );
+

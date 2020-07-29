@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.lsjunior.desafiootimo.web.entity.Empresa;
+import com.github.lsjunior.desafiootimo.web.entity.TipoEmpresa;
 import com.github.lsjunior.desafiootimo.web.service.EmpresaService;
+import com.google.common.base.Enums;
+import com.google.common.base.Strings;
 
 @RestController
-@RequestMapping("/api/empresa")
+@RequestMapping("/api/empresas")
 @CrossOrigin
 public class EmpresaResource {
 
@@ -51,8 +54,10 @@ public class EmpresaResource {
   }
 
   @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> pesquisar(@RequestParam(name = "q", required = false) final String query, final Pageable pageable) {
-    Page<Empresa> page = this.empresaService.list(query, pageable);
+  public ResponseEntity<?> pesquisar(@RequestParam(name = "tipo", required = false) final String tipo, @RequestParam(name = "cnpj", required = false) final String cnpj, @RequestParam(name = "nome", required = false) final String nome,
+      final Pageable pageable) {
+    TipoEmpresa tipoEmpresa = Strings.isNullOrEmpty(tipo) ? null : Enums.getIfPresent(TipoEmpresa.class, tipo).or((TipoEmpresa) null);
+    Page<Empresa> page = this.empresaService.list(tipoEmpresa, cnpj, nome, pageable);
     return ResponseEntity.ok(page);
   }
 

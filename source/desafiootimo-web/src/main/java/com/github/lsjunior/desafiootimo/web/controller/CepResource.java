@@ -13,7 +13,7 @@ import com.github.lsjunior.desafiootimo.web.model.Cep;
 import com.github.lsjunior.desafiootimo.web.service.CepService;
 
 @RestController
-@RequestMapping("/api/cep")
+@RequestMapping("/api/ceps")
 @CrossOrigin
 public class CepResource {
 
@@ -22,12 +22,8 @@ public class CepResource {
 
   @RequestMapping(path = "/{cep}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> get(@PathVariable("cep") final String cep) {
-    try {
-      Cep c = this.cepService.get(cep);
-      return ResponseEntity.ok(c);
-    } catch (Exception e) {
-      return ResponseUtils.toError(e);
-    }
+    Cep c = this.cepService.get(cep);
+    return ResponseEntity.ok(c);
   }
 
 }

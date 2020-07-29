@@ -11,13 +11,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/empresa",
+					"raw": "{{url}}/api/empresas",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"empresa"
+						"empresas"
 					]
 				}
 			},
@@ -29,13 +29,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/empresa/2",
+					"raw": "{{url}}/api/empresas/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"empresa",
+						"empresas",
 						"2"
 					]
 				}
@@ -48,13 +48,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/empresa/2",
+					"raw": "{{url}}/api/empresas/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"empresa",
+						"empresas",
 						"2"
 					]
 				}
@@ -68,7 +68,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"cnpj\": \"00.000.000/0002-00\",\r\n  \"nome\": \"Teste 00002\",\r\n  \"razaoSocial\": \"Teste 00002 SA\",\r\n  \"email\": \"teste00002@gmail.com\",\r\n  \"logradouro\": \"QC 01 Rua G Torre G4 Apto 04\",\r\n  \"estado\": \"DF\",\r\n  \"cidade\": \"Brasília\",\r\n  \"bairro\": \"Jardim Mangueiral\",\r\n  \"cep\": \"71699-024\",\r\n  \"tipo\": \"MATRIZ\",\r\n  \"id_matriz\": null\r\n}",
+					"raw": "{\r\n  \"cnpj\": \"00.000.000/0002-00\",\r\n  \"nome\": \"Teste 00002\",\r\n  \"razaoSocial\": \"Teste 00002 SA\",\r\n  \"contato\": \"Lourival Sabino\",\r\n  \"email\": \"teste00002@gmail.com\",\r\n  \"logradouro\": \"QC 01 Rua G\",\r\n  \"complemento\": \"Torre G4 Apto 04\",\r\n  \"estado\": \"DF\",\r\n  \"cidade\": \"Brasília\",\r\n  \"bairro\": \"Jardim Mangueiral\",\r\n  \"cep\": \"71699-024\",\r\n  \"tipo\": \"MATRIZ\",\r\n  \"id_matriz\": null\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -76,13 +76,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/api/empresa",
+					"raw": "{{url}}/api/empresas",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"empresa"
+						"empresas"
 					]
 				}
 			},
@@ -95,7 +95,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"id\": 2,\r\n  \"cnpj\": \"00.000.000/0001-00\",\r\n  \"nome\": \"Teste 00001\",\r\n  \"razaoSocial\": \"Teste 00001 S.A.\",\r\n  \"email\": \"teste00001@gmail.com\",\r\n  \"logradouro\": \"QC 01 Rua G Torre G4 Apto 04\",\r\n  \"estado\": \"DF\",\r\n  \"cidade\": \"Brasília\",\r\n  \"bairro\": \"Jardim Mangueiral\",\r\n  \"cep\": \"71699-024\",\r\n  \"tipo\": \"MATRIZ\",\r\n  \"id_matriz\": null\r\n}",
+					"raw": "{\r\n  \"id\": 2,\r\n  \"cnpj\": \"00.000.000/0001-00\",\r\n  \"nome\": \"Teste 00001\",\r\n  \"razaoSocial\": \"Teste 00001 S.A.\",\r\n  \"contato\": \"Lourival Sabino\",\r\n  \"email\": \"teste00001@gmail.com\",\r\n  \"logradouro\": \"QC 01 Rua G\",\r\n  \"complemento\": \"Torre G4 Apto 04\",\r\n  \"estado\": \"DF\",\r\n  \"cidade\": \"Brasília\",\r\n  \"bairro\": \"Jardim Mangueiral\",\r\n  \"cep\": \"71699-024\",\r\n  \"tipo\": \"MATRIZ\",\r\n  \"id_matriz\": null\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -103,13 +103,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/api/empresa/2",
+					"raw": "{{url}}/api/empresas/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"empresa",
+						"empresas",
 						"2"
 					]
 				}
@@ -122,13 +122,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/cep/71699024",
+					"raw": "{{url}}/api/ceps/71699024",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"cep",
+						"ceps",
 						"71699024"
 					]
 				}
@@ -138,7 +138,7 @@
 	],
 	"variable": [
 		{
-			"id": "904f9ab8-a688-4c62-9ed7-94347c12f563",
+			"id": "6b4438a3-28dd-417b-8267-9c5f554f045f",
 			"key": "url",
 			"value": "http://localhost:18080/desafiootimo-web"
 		}

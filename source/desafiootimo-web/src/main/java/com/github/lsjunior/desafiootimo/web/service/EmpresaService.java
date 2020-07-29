@@ -5,9 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,7 +58,7 @@ public class EmpresaService {
     if (opt.isPresent()) {
       Empresa e = opt.get();
       if (e.getTipo() == TipoEmpresa.MATRIZ) {
-        throw new IllegalArgumentException("Não é possível excluir uma matriz");
+        throw new IllegalArgumentException("Não é possível excluir uma empresa matriz");
       }
       this.empresaJpaRepository.delete(opt.get());
       return true;
@@ -68,13 +66,10 @@ public class EmpresaService {
     return false;
   }
 
-  public Page<Empresa> list(final String query, final Pageable pageable) {
-    String str = MoreObjects.firstNonNull(query, "");
-    Pageable pageableToUse = pageable;
-    if (pageableToUse.getSort() == null) {
-      pageableToUse = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("nome"));
-    }
-    Page<Empresa> page = this.empresaJpaRepository.findByNomeContaining(str, pageableToUse);
+  public Page<Empresa> list(final TipoEmpresa tipo, final String cnpj, final String nome, final Pageable pageable) {
+    String cnpjToSearch = "%" + MoreObjects.firstNonNull(cnpj, "") + "%";
+    String nomeToSearch = "%" + MoreObjects.firstNonNull(nome, "") + "%";
+    Page<Empresa> page = this.empresaJpaRepository.findByTipoAndCnpjAndNome(tipo, cnpjToSearch, nomeToSearch, pageable);
     return page;
   }
 

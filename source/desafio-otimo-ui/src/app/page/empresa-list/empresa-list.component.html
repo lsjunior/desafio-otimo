@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">
+        <span class="fa fa-building"></span>
+        Empresas Cadastradas
+      </h3>
+      <form role="form" name="form">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="cnpj" class="form-control-label">Digite o CNPJ para o filtro</label>
+            <input type="text" id="cnpj" name="cnpj" [(ngModel)]="cnpj" class="form-control" placeholder="CNPJ da empresa" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="nome" class="form-control-label">Digite o nome para o filtro </label>
+            <input type="text" id="nome" name="nome" [(ngModel)]="nome" class="form-control" placeholder="Nome da empresa" />
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-12 text-center">
+            <a title="Novo" [routerLink]="['/empresa/new']" class="btn btn-primary m-2">
+              <span class="fa fa-plus" aria-hidden="true"></span>
+              Novo Cadastro
+            </a>
+            <button (click)="list()" class="btn btn-primary m-2">
+              <span class="fa fa-search" aria-hidden="true"></span>
+              Pesquisar
+            </button>
+          </div>
+        </div>
+        <div class="table-responsive mt-2" *ngIf="page && page.content && page.totalElements > 0">
+          <table class="table table-bordered table-hover">
+            <caption>Qtd. Registros: {{page.totalElements}}</caption>
+            <thead>
+              <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Nome</th>
+                <th class="text-center d-none d-sm-none d-md-block">CNPJ</th>
+                <th class="text-center">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of page.content">
+                <td class="text-right">
+                  {{item.id}}
+                </td>
+                <td>
+                  {{item.nome}}
+                </td>
+                <td class="d-none d-sm-none d-md-table-cell">
+                  {{item.cnpj}}
+                </td>
+                <td class="text-center">
+                  <a title="Editar" [routerLink]="['/empresa/edit', item.id]" class="mx-2">
+                    <span class="fa fa-edit"></span>
+                    <span class="d-none d-sm-none d-md-inline">Editar</span>
+                  </a>
+                  <a title="Excluir" href="javascript:void(0);" (click)="onClickDelete(item)" class="mx-2">
+                    <span class="fa fa-trash-alt"></span>
+                    <span class="d-none d-sm-none d-md-inline">Excluir</span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <ngb-pagination [collectionSize]="page.totalElements" [(page)]="page.number" [pageSize]="page.size" [boundaryLinks]="true" [maxSize]="5" (pageChange)="onPageChange($event)" class="d-flex justify-content-center"></ngb-pagination>
+          </div>
+        </div>
+        <div class="row mt-2" *ngIf="page && page.content && page.totalElements == 0">
+          <div class="col-12 text-danger">
+            <strong>
+              <span class="fa fa-exclamation-circle"></span>
+              Nenhum registro encontrado
+            </strong>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

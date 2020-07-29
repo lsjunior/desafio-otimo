@@ -1,0 +1,173 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">
+        <span class="fa fa-building"></span>
+        Formuário para Cadastro
+      </h3>
+      <form id="form" name="form" #form="ngForm" (ngSubmit)="onSubmit()" *ngIf="model" novalidate>
+        <div class="row">
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="cnpj">CNPJ:</label>
+            <input type="text" id="cnpj" name="cnpj" #cnpj="ngModel" [(ngModel)]="model.cnpj" placeholder="CNPJ" class="form-control" [textMask]="{mask: cnpjMask, guide: false}" minlength="18" maxlength="18" required appCnpj />
+            <div class="text-danger small" *ngIf="cnpj.invalid && (cnpj.dirty || cnpj.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="cnpj.errors.required">CNPJ deve ser informado</span>
+              <span *ngIf="cnpj.errors.minlength || cnpj.errors.maxlength">CNPJ deve ter 18 caracteres</span>
+              <span *ngIf="cnpj.errors.cnpj">CNPJ inválido</span>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="tipo">Tipo:</label>
+            <select id="tipo" name="tipo" #tipo="ngModel" [(ngModel)]="model.tipo" class="form-control" required>
+              <option value="">Selecione</option>
+              <option value="MATRIZ">Matriz</option>
+              <option value="FILIAL">Filial</option>
+            </select>
+            <div class="text-danger small" *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="tipo.errors.required">Tipo deve ser selecionado</span>
+            </div>
+          </div>
+          <!--
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label" for="matriz">Matriz</label>
+            <input type="text" id="matriz" name="matriz" #matriz="ngModel" [(ngModel)]="matrizStr" class="form-control" maxlength="50"
+                   [resultFormatter]="matrizResultFormat" [inputFormatter]="matrizInputFormat" />
+            <div class="text-danger small" *ngIf="matriz.invalid && (matriz.dirty || matriz.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="tipo.errors.required">Matriz deve ser selecionada</span>
+            </div>
+          </div>
+          -->
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" #nome="ngModel" [(ngModel)]="model.nome" placeholder="Nome" class="form-control" maxlength="50" required />
+            <div class="text-danger small" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="nome.errors.required">Nome deve ser informado</span>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="razaoSocial">Razão Social:</label>
+            <input type="text" id="razaoSocial" name="razaoSocial" #razaoSocial="ngModel" [(ngModel)]="model.razaoSocial" placeholder="Razão Social" class="form-control" maxlength="40" required />
+            <div class="text-danger small" *ngIf="razaoSocial.invalid && (razaoSocial.dirty || razaoSocial.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="razaoSocial.errors.required">Razão social ser informada</span>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="contato">Contato:</label>
+            <input type="text" id="contato" name="contato" #contato="ngModel" [(ngModel)]="model.contato" placeholder="Contato" class="form-control" maxlength="40" required />
+            <div class="text-danger small" *ngIf="contato.invalid && (contato.dirty || contato.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="contato.errors.required">Contato deve ser informado</span>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="email">E-mail:</label>
+            <input type="email" id="email" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="E-mail" class="form-control" maxlength="40" required />
+            <div class="text-danger small" *ngIf="email.invalid && (email.dirty || email.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="email.errors.required">E-mail deve ser informado</span>
+              <span *ngIf="email.errors.email">E-mail inválido</span>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="cep">CEP:</label>
+            <div class="input-group">
+              <input type="text" id="cep" name="cep" #cep="ngModel" [(ngModel)]="model.cep" placeholder="CEP" class="form-control" [textMask]="{mask: cepMask, guide: false}" maxlength="9" maxlength="9" required />
+              <div class="input-group-append">
+                <button title="Pesquisar CEP" class="btn btn-secondary" type="button" (click)="onClickCep()">
+                  Buscar CEP
+                </button>
+              </div>
+            </div>
+            <div class="text-danger small" *ngIf="cep.invalid && (cep.dirty || cep.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="cep.errors.required">CEP deve ser informado</span>
+              <span *ngIf="cep.errors.minlength || cnpj.errors.maxlength">CEP deve ter 9 caracteres</span>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="estado">Estado:</label>
+            <select id="estado" name="estado"  #estado="ngModel" [(ngModel)]="model.estado" class="form-control" required>
+              <option value="">Selecione</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espirito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </select>
+            <div class="text-danger small" *ngIf="estado.invalid && (estado.dirty || estado.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="estado.errors.required">Estado deve ser selecionado</span>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="bairro">Bairro:</label>
+            <input type="text" id="bairro" name="bairro" #bairro="ngModel" [(ngModel)]="model.bairro" placeholder="Bairro" class="form-control" maxlength="40" required />
+            <div class="text-danger small" *ngIf="bairro.invalid && (bairro.dirty || bairro.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="bairro.errors.required">Bairro deve ser informado</span>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" #cidade="ngModel" [(ngModel)]="model.cidade" placeholder="Cidade" class="form-control" maxlength="40" required />
+            <div class="text-danger small" *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="cidade.errors.required">Cidade deve ser informada</span>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label required" for="logradouro">Logradouro:</label>
+            <input type="text" id="logradouro" name="logradouro" #logradouro="ngModel" [(ngModel)]="model.logradouro" placeholder="Logradouro" class="form-control" maxlength="40" required />
+            <div class="text-danger small" *ngIf="logradouro.invalid && (logradouro.dirty || logradouro.touched)">
+              <span class="fa fa-exclamation-circle mr-2"></span>
+              <span *ngIf="logradouro.errors.required">Logradouro deve ser informado</span>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-sm-12 col-xs-12">
+            <label class="form-control-label" for="complemento">Complemento:</label>
+            <input type="text" id="complemento" name="complemento" #complemento="ngModel" [(ngModel)]="model.complemento" placeholder="Complemento" class="form-control" maxlength="40" />
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-12 text-center">
+            <a [routerLink]="['/empresa']" class="btn btn-primary m-2">
+              <span class="fa fa-list"></span>
+              Lista de Empresas
+            </a>
+            <button type="submit" [disabled]="!form.form.valid" class="btn btn-primary m-2">
+              <span class="fa fa-save"></span>
+              Salvar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

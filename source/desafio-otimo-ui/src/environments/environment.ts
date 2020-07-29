@@ -3,6 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  name: 'Local',
+  baseUrl: 'http://localhost:4200/',
+  resourcesUrl: 'http://localhost:18080/desafiootimo-web',
   production: false
 };
 
