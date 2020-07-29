@@ -1,1 +1,1 @@
-docker-compose -p desafiootimo stop
+docker-compose -p desafio_otimo_dev stop

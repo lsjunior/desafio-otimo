@@ -1,1 +1,1 @@
-docker-compose -p desafiootimo up -d --remove-orphans
+docker-compose -p desafio_otimo_dev up -d --remove-orphans
