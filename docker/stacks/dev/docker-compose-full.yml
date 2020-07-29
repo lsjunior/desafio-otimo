@@ -3,19 +3,13 @@ volumes:
   postgres_data: {}
 services:
   app:
-    image: adoptopenjdk:8u262-b10-jdk-openj9-0.21.0
-    volumes:
-      - ./volumes/app/app.jar:/app.jar:ro
+    image: lsjunior/desafio-otimo-app:1.0.0
     ports:
       - "18080:18080/tcp"
     links:
       - postgres:db
-    command:
-      - java -jar -Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom /app.jar
   nginx:
-    image: nginx:1.19.1
-    volumes:
-      - ./volumes/nginx/usr/share/nginx/html://usr/share/nginx/html:ro
+    image: lsjunior/desafio-otimo-ui:1.0.0
     ports:
       - "18000:80/tcp"
   postgres:
